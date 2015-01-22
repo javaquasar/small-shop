@@ -40,7 +40,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springfr
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="zinchenko.books.beans"/>
+        <property name="packagesToScan" value="just4.fun.smallshop.beans"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
