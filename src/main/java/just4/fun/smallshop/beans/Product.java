@@ -1,8 +1,5 @@
 package just4.fun.smallshop.beans;
 
-import zinchenko.books.beans.InputBloc;
-import zinchenko.books.beans.Workflow;
-
 import javax.persistence.*;
 import java.util.List;
 

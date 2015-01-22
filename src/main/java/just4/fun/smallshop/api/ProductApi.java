@@ -8,10 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import zinchenko.books.beans.InputBloc;
-import zinchenko.books.beans.Page;
-import zinchenko.books.beans.Workflow;
-import zinchenko.books.services.TestService;
 
 import java.util.ArrayList;
 import java.util.List;
