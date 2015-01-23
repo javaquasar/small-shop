@@ -7,21 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import zinjvi.controller.BaseRestController;
+import zinjvi.service.Service;
 
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/product")
-public class ProductApi {
+public class ProductApi extends BaseRestController{
+
+    private ProductService productService;
 
     @Autowired
-    private ProductService service;
-
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public List<Product> getAll() {
-        return service.findAll();
+    protected ProductApi(ProductService service) {
+        super(service);
+        productService = service;
     }
-
 
 }
