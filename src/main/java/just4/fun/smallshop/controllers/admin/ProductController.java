@@ -16,7 +16,6 @@ public class ProductController {
     @RequestMapping("/list")
     public String test(Model model) {
         model.addAttribute("products", productService.findAll());
-        model.addAttribute("test", "val");
         return "admin/productList";
     }
 

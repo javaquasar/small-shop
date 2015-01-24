@@ -5,11 +5,8 @@
     <title></title>
 </head>
 <body>
-    hello - ${test}
-
     <c:forEach items="${products}" var="product">
         ${product.name}
     </c:forEach>
-
 </body>
 </html>
