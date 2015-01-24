@@ -31,7 +31,7 @@ public class ProductController {
     @RequestMapping("/save")
     public String save(Model model, Product product) {
         productService.save(product);
-        return "redirect:/product/show/" + product.getId();
+        return "redirect:show/" + product.getId();
     }
 
     @RequestMapping("/show/{id}")

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action="/app/product/save" method="post">
+<form action="save" method="post">
     <input name="name">
     <input type="submit" value="s">
 </form>

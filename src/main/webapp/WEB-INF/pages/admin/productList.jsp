@@ -11,7 +11,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="btn-group" role="group">
-                <a type="button" class="btn btn-success" href="/app/product/create">Create</a>
+                <a type="button" class="btn btn-success" href="create">Create</a>
             </div>
         </div>
     </div>
