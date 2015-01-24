@@ -8,50 +8,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!--<context:component-scan base-package="zinchenko.books.controllers"/>-->
-    <!--<context:component-scan base-package="zinchenko.books.services"/>-->
-
+    <import resource="data-context.xml"/>
+    
     <context:component-scan base-package="just4.fun.smallshop"/>
 
     <context:annotation-config/>
 
     <mvc:annotation-driven/>
 
-
-    <!--TODO | separate to different file -->
-
-
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager" order="400"/>
-
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <!--TODO | move to properties-->
-        <property name="url" value="jdbc:postgresql://127.0.0.1:5432/small-shop" />
-        <property name="username" value="zinchenko" />
-        <property name="password" value="password" />
-    </bean>
-
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="just4.fun.smallshop.beans"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-                <prop key="hibernate.jdbc.batch_size">20</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-            </props>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
         </property>
     </bean>
-
-
 
 </beans>
