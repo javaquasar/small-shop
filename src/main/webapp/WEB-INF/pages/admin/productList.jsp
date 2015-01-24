@@ -3,8 +3,7 @@
 <html>
 <head>
     <title></title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/admin.css" rel="stylesheet">
+    <%@ include file="/WEB-INF/pages/admin/adminStatic.jsp" %>
 </head>
 <body>
 
@@ -12,7 +11,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-success">Create</button>
+                <a type="button" class="btn btn-success" href="/app/product/create">Create</a>
             </div>
         </div>
     </div>

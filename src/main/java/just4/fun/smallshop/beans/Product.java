@@ -36,4 +36,16 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        //TODO
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        //TODO
+        return 0;
+    }
 }
