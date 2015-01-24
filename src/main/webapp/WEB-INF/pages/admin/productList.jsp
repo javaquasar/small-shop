@@ -9,6 +9,13 @@
 <body>
 
 <div class="products-list">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-success">Create</button>
+            </div>
+        </div>
+    </div>
     <c:forEach items="${products}" var="product">
         <div class="panel panel-default">
             <div class="panel-body">
