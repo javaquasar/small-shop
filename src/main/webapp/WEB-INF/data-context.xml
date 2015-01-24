@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath*:data.properties"/>
 
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -13,23 +16,21 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <!--TODO | move to properties-->
-        <property name="url" value="jdbc:postgresql://127.0.0.1:5432/small-shop" />
-        <property name="username" value="zinchenko" />
-        <property name="password" value="password" />
+        <property name="url" value="${data.hibernate.url}" />
+        <property name="username" value="${data.hibernate.username}" />
+        <property name="password" value="${data.hibernate.password}" />
     </bean>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="just4.fun.smallshop.beans"/>
+        <property name="packagesToScan" value="${data.hibernate.packagesToScan}"/>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.jdbc.batch_size">20</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.dialect">${data.hibernate.dialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${data.hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.show_sql">${data.hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${data.hibernate.show_sql}</prop>
             </props>
         </property>
     </bean>
