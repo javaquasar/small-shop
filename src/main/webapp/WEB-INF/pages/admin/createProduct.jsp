@@ -7,11 +7,15 @@
 </head>
 <body>
 
-<form action="save" method="post">
-    <input name="name">
-    <input type="submit" value="s">
-</form>
-
+<div class="panel-body">
+    <form action="save" method="post">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-control" id="title" placeholder="Enter title" name="name">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
 
 </body>
 </html>

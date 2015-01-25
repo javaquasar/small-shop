@@ -7,8 +7,9 @@
 </head>
 <body>
 
-${product.name}
-
+<div class="panel-body">
+    ${product.name}
+</div>
 
 </body>
 </html>

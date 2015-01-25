@@ -1,15 +1,12 @@
 package just4.fun.smallshop.beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "product", indexes = {
+
+})
 public class Product {
 
     @Id
@@ -20,6 +17,9 @@ public class Product {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductAttribute> productAttributes;
 
     public Long getId() {
         return id;
@@ -35,6 +35,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ProductAttribute> getProductAttributes() {
+        return productAttributes;
+    }
+
+    public void setProductAttributes(List<ProductAttribute> productAttributes) {
+        this.productAttributes = productAttributes;
     }
 
     @Override
