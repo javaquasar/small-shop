@@ -20,8 +20,9 @@
             <div class="panel-body">
                 <div class="product-controls">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-info">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <%--TODO  remove root /app need to use relative path--%>
+                        <a href="edit/${product.id}" class="btn btn-info">Edit</a>
+                        <a href="" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
                 <span class="product-name">${product.name}</span>

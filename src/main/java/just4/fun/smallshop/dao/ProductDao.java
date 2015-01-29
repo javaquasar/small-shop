@@ -1,6 +1,6 @@
 package just4.fun.smallshop.dao;
 
-import just4.fun.smallshop.beans.Product;
+import just4.fun.smallshop.model.Product;
 import zinjvi.repository.Repository;
 
 /**

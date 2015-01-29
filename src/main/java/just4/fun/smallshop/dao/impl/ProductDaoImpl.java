@@ -1,6 +1,6 @@
 package just4.fun.smallshop.dao.impl;
 
-import just4.fun.smallshop.beans.Product;
+import just4.fun.smallshop.model.Product;
 import just4.fun.smallshop.dao.ProductDao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

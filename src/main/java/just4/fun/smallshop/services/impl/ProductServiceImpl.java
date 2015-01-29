@@ -1,11 +1,10 @@
 package just4.fun.smallshop.services.impl;
 
-import just4.fun.smallshop.beans.Product;
+import just4.fun.smallshop.model.Product;
 import just4.fun.smallshop.dao.ProductDao;
 import just4.fun.smallshop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zinjvi.repository.Repository;
 import zinjvi.service.impl.BaseService;
 
 /**

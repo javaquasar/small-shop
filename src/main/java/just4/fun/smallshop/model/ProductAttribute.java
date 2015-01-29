@@ -1,4 +1,4 @@
-package just4.fun.smallshop.beans;
+package just4.fun.smallshop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +34,15 @@ public class ProductAttribute {
     @ManyToOne(optional = false)
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public String getValueAsString() {
+        if(attributeType.getType() == AttributeValueType.NUMBER) {
+            return numericValue.toString();
+        } else if (attributeType.getType() == AttributeValueType.STRING) {
+            return stringValue;
+        }
+        throw new IllegalStateException("The product attribute value should match with type");
+    }
 
     public Long getId() {
         return id;

@@ -1,12 +1,15 @@
-package just4.fun.smallshop.beans;
+package just4.fun.smallshop.model;
+
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "product", indexes = {
-
-})
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -18,31 +21,35 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<ProductAttribute> productAttributes;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public Product setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Product setName(String name) {
         this.name = name;
+        return this;
     }
 
     public List<ProductAttribute> getProductAttributes() {
         return productAttributes;
     }
 
-    public void setProductAttributes(List<ProductAttribute> productAttributes) {
+    public Product setProductAttributes(List<ProductAttribute> productAttributes) {
         this.productAttributes = productAttributes;
+        return this;
     }
 
     @Override
