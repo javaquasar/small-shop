@@ -317,26 +317,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>1.7</version>
-                    <executions>
-                        <execution>
-                            <id>add-source</id>
-                            <phase>generate-sources</phase>
-                            <goals>
-                                <goal>add-source</goal>
-                            </goals>
-                            <configuration>
-                                <sources>
-                                    <source>src/main/java</source>
-                                    <!--<source>src/test/java</source>-->
-                                </sources>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>2.3.2</version>
                     <configuration>
@@ -345,58 +325,82 @@
                         <compilerArgument/>
                     </configuration>
                 </plugin>
+
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>tomcat-maven-plugin</artifactId>
-                    <version>1.1</version>
+                    <groupId>com.github.adrianboimvaser</groupId>
+                    <artifactId>postgresql-maven-plugin</artifactId>
+                    <version>0.2-SNAPSHOT</version>
                     <configuration>
-                        <url>http://localhost:8080/manager/text</url>
-                        <server>tomcat</server>
-                        <path>/food</path>
+                        <pgsqlHome>${project.build.directory}/pgsql</pgsqlHome>
+                        <dataDir>${project.build.directory}/data</dataDir>
+                        <!--<skip>${skipITs}</skip>-->
+                        <databaseName>postgres</databaseName>
+                        <username>postgres</username>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>version-check</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>version</goal>
+                            </goals>
+                            <configuration>
+                                <mandatoryVersionRange>[9.2,)</mandatoryVersionRange>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>init-db</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>initdb</goal>
+                            </goals>
+                            <configuration>
+                                <username>postgres</username>
+                                <passwordFile>${basedir}/password.txt</passwordFile>
+                                <encoding>UTF8</encoding>
+                                <locale>en_US</locale>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>start-postgresql</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>start</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>create-db</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>createdb</goal>
+                            </goals>
+                            <configuration>
+                                <username>postgres</username>
+                                <databaseName>products</databaseName>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>drop-db</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>dropdb</goal>
+                            </goals>
+                            <configuration>
+                                <username>postgres</username>
+                                <databaseName>products</databaseName>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>stop-postgresql</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>stop</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.2</version>
-                    <configuration>
-                        <!-- http port -->
-                        <port>8080</port>
-                        <!-- application path always starts with /-->
-                        <path>/</path>
-                        <!-- optional path to a context file -->
-                        <contextFile>${tomcatContextXml}</contextFile>
-                        <!-- optional system propoerties you want to add -->
-                        <systemProperties>
-                            <appserver.base>${project.build.directory}/appserver-base</appserver.base>
-                            <appserver.home>${project.build.directory}/appserver-home</appserver.home>
-                            <derby.system.home>${project.build.directory}/appserver-base/logs</derby.system.home>
-                            <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
-                        </systemProperties>
-                        <!-- if you want to use test dependencies rather than only runtime -->
-                        <useTestClasspath>false</useTestClasspath>
-                        <!-- optional if you want to add some extra directories into the classloader -->
-                        <additionalClasspathDirs>
-                            <additionalClasspathDir/>
-                        </additionalClasspathDirs>
-                    </configuration>
-                    <!-- For any extra dependencies needed when running embedded Tomcat (not WAR dependencies) add them below -->
-                    <dependencies/>
-                </plugin>
-                <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
-                    <artifactId>maven-jetty-plugin</artifactId>
-                    <version>6.1.10</version>
-                    <configuration>
-                        <scanIntervalSeconds>10</scanIntervalSeconds>
-                        <connectors>
-                            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                                <port>8080</port>
-                                <maxIdleTime>60000</maxIdleTime>
-                            </connector>
-                        </connectors>
-                    </configuration>
-                </plugin>
+
+
             </plugins>
         </pluginManagement>
     </build>

@@ -4,13 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "attribute_type")
-public class AttributeType {
+public class AttributeType extends BaseEntity {
 
-    @Id
-    @Column(name = "attribute_type_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attribute_type_generator")
-    @SequenceGenerator(name = "attribute_type_generator", sequenceName = "attribute_type_generator")
-    private Long id;
+//    @Id
+//    @Column(name = "attribute_type_id")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attribute_type_generator")
+//    @SequenceGenerator(name = "attribute_type_generator", sequenceName = "attribute_type_generator")
+//    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -24,15 +24,6 @@ public class AttributeType {
 
     public AttributeType(Long id) {
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public AttributeType setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getName() {
