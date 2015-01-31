@@ -12,13 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_attribute")
-public class ProductAttribute {
-
-    @Id
-    @Column(name = "product_attribute_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_attribute_generator")
-    @SequenceGenerator(name = "product_attribute_generator", sequenceName = "product_attribute_generator")
-    private Long id;
+public class ProductAttribute extends BaseEntity {
 
     @Column(name = "numeric_value")
     private Integer numericValue;
@@ -42,14 +36,6 @@ public class ProductAttribute {
             return stringValue;
         }
         throw new IllegalStateException("The product attribute value should match with type");
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Integer getNumericValue() {

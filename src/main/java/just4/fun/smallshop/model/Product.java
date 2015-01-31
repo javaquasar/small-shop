@@ -10,13 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
-public class Product {
-
-    @Id
-    @Column(name = "product_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
-    @SequenceGenerator(name = "product_generator", sequenceName = "product_generator")
-    private Long id;
+public class Product extends BaseEntity {
 
     @Column(name = "name")
     private String name;
@@ -24,15 +18,6 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<ProductAttribute> productAttributes;
-
-    public Long getId() {
-        return id;
-    }
-
-    public Product setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getName() {
         return name;
@@ -54,7 +39,7 @@ public class Product {
 
     @Override
     public boolean equals(Object o) {
-        //TODO
+        //TODO and fo all entities
         return true;
     }
 

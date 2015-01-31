@@ -6,12 +6,6 @@ import javax.persistence.*;
 @Table(name = "attribute_type")
 public class AttributeType extends BaseEntity {
 
-//    @Id
-//    @Column(name = "attribute_type_id")
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attribute_type_generator")
-//    @SequenceGenerator(name = "attribute_type_generator", sequenceName = "attribute_type_generator")
-//    private Long id;
-
     @Column(name = "name")
     private String name;
 
@@ -23,7 +17,7 @@ public class AttributeType extends BaseEntity {
     }
 
     public AttributeType(Long id) {
-        this.id = id;
+        super(id);
     }
 
     public String getName() {
