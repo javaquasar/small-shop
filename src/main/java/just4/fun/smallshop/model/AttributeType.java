@@ -10,7 +10,7 @@ public class AttributeType extends BaseEntity {
     private String name;
 
     @Column(name = "type")
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(value = EnumType.STRING) //TODO | try to don't save string
     private AttributeValueType type;
 
     public AttributeType() {

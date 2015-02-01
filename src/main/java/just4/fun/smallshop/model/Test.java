@@ -1,24 +1,27 @@
 package just4.fun.smallshop.model;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 
 /**
- * Created by Vitaliy_Zinchenko on 30.01.2015.
+ * Created by zinchenko on 01.02.15.
  */
-@MappedSuperclass
-public abstract class BaseEntity {
+@Entity
+@Table(name = "test_test")
+public class Test {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "serial")
     protected Long id;
 
-    protected BaseEntity() {
+    private String name;
+
+    public String getName() {
+        return name;
     }
 
-    protected BaseEntity(Long id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {

@@ -1,23 +1,26 @@
 package just4.fun.smallshop.controllers.admin;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import just4.fun.smallshop.controllers.admin.forms.ProductForm;
+import just4.fun.smallshop.controllers.converters.ProductConverter;
+import just4.fun.smallshop.controllers.exceptions.ResourceNotFoundException;
 import just4.fun.smallshop.model.AttributeType;
 import just4.fun.smallshop.model.Product;
 import just4.fun.smallshop.model.ProductAttribute;
 import just4.fun.smallshop.services.AttributeTypeService;
 import just4.fun.smallshop.services.ProductService;
-import ml.rugal.sshcommon.springmvc.bind.annotation.FormModel;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static just4.fun.smallshop.controllers.admin.forms.ProductForm.AttributeFormData;
@@ -32,6 +35,9 @@ public class ProductController {
     @Autowired
     private AttributeTypeService attributeTypeService;
 
+    @Autowired
+    private ProductConverter productConverter;
+
     @RequestMapping("/list")
     public String list(Model model) {
         model.addAttribute("products", productService.findAll());
@@ -40,45 +46,29 @@ public class ProductController {
 
     @RequestMapping("/create")
     public String create(Model model) {
+        model.addAttribute("productForm", new ProductForm());
         model.addAttribute("types", attributeTypeService.findAll());
         return "admin/product/edit";
     }
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id) {
-        model.addAttribute("product", productService.find(id));
+//        TODO | fire 404 if there isn't product with id in the DB
+        ProductForm productForm = productConverter.modelToForm(productService.find(id));
+        if (productForm == null) {
+            throw new ResourceNotFoundException();
+        }
+        model.addAttribute("productForm", productForm);
         model.addAttribute("types", attributeTypeService.findAll());
         return "admin/product/edit";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Model model, @ModelAttribute("product") ProductForm productForm) {
-        Product product = extractProduct(productForm);
-        productService.save(product);
+    public String save(Model model, @ModelAttribute("productForm") ProductForm productForm) {
+        Product product = productConverter.formToModel(productForm);
+        productService.saveOrUpdate(product);
         return "redirect:show/" + product.getId();
     }
-
-    private Product extractProduct(ProductForm productForm) {
-        Product product = new Product();
-        product.setName(productForm.getTitle());
-        List<ProductAttribute> attributes = extractAttributes(productForm.getAttributes(), product);
-        product.setProductAttributes(attributes);
-        return product;
-    }
-
-    private List<ProductAttribute> extractAttributes(List<AttributeFormData> attributeFormDatas, final Product product) {
-        return Lists.transform(attributeFormDatas, new Function<AttributeFormData, ProductAttribute>() {
-            @Override
-            public ProductAttribute apply(AttributeFormData attributeFormData) {
-                ProductAttribute attribute = new ProductAttribute();
-                attribute.setAttributeType(new AttributeType(attributeFormData.getAttributeTypeId()));
-                attribute.setStringValue(attributeFormData.getValue());
-                attribute.setProduct(product);
-                return attribute;
-            }
-        });
-    }
-
 
     @RequestMapping("/show/{id}")
     public String save(Model model, @PathVariable Long id) {
