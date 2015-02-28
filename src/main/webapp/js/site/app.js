@@ -1,13 +1,15 @@
 define([
     'angular',
     'text!tmpl/order.html',
-    'text!tmpl/subCategory.html',
+    'text!tmpl/productList.html',
+    'text!tmpl/productShow.html',
     'controllers',
     'angularRoute'
 ], function (
     ng,
     orderTmpl,
-    subCategoryTmpl
+    productListTmpl,
+    productShowTmpl
     ) {
 
     console.log("app");
@@ -23,9 +25,13 @@ define([
                         template: orderTmpl,
                         controller: 'OrderCtrl'
                     })
-                    .when('/subCategory/:subCategoryId', {
-                        template: subCategoryTmpl,
-                        controller: 'SubCategoryCtrl'
+                    .when('/productList/:subCategoryId', {
+                        template: productListTmpl,
+                        controller: 'ProductListCtrl'
+                    })
+                    .when('/product/show/:productId', {
+                        template: productShowTmpl,
+                        controller: 'ProductShowCtrl'
                     })
                     .otherwise({
                         redirectTo: '/order'

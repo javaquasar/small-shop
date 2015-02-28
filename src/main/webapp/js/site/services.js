@@ -60,11 +60,19 @@ define([
 
             //TODO move to constants
             //TODO move 'app' to separate constant
-            var root = '/app/product';
+            var root = '/app/product/:productId';
 
-            var Product = $resource(root, {}, {
+            var Product = $resource(root, {productId:'@id'}, {
                 getBySubCategoryId: {
                     url: root + '/bySubCategoryId/:subCategoryId',
+                    isArray: true
+                },
+                addToCart: {
+                    url: root + '/addToCart/:productId',
+                    method: 'POST'
+                },
+                cartItems: {
+                    url: root + '/cartItems',
                     isArray: true
                 }
             });

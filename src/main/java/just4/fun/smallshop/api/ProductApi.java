@@ -4,18 +4,21 @@ import just4.fun.smallshop.model.product.Product;
 import just4.fun.smallshop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import zinjvi.controller.BaseRestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedTransferQueue;
 
 //TODO move api to separate servlet
 @Controller
 @RequestMapping(value = "/product")
-public class ProductApi extends BaseRestController{
+public class ProductApi extends BaseRestController<Product, Long> {
 
+    public static final String CART_ITEMS_KEY = "cart-items";
     private ProductService productService;
 
     @Autowired
@@ -28,6 +31,27 @@ public class ProductApi extends BaseRestController{
     @ResponseBody
     public List<Product> getBySubCategoryId(@PathVariable("subCategoryId") Long subCategoryId) {
         return productService.getBySubCategoryId(subCategoryId);
+    }
+
+    @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
+    @ResponseBody
+    public void addToCart(@RequestBody Long productId, HttpSession session) {
+        getCartItems(session).add(productId);
+    }
+
+    private List<Long> getCartItems(HttpSession session) {
+        List<Long> cartItems = (List<Long>) session.getAttribute(CART_ITEMS_KEY);
+        if(cartItems == null) {
+            cartItems = new ArrayList<Long>();
+            session.setAttribute(CART_ITEMS_KEY, cartItems);
+        }
+        return cartItems;
+    }
+
+    @RequestMapping("/cartItems")
+    @ResponseBody
+    public List<Long> cartItems(HttpSession session) {
+        return getCartItems(session);
     }
 
 }

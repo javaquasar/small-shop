@@ -14,11 +14,15 @@
                 <span ng-bind="category.title"></span>
                 <ul ng-repeat="subCategory in category.subCategories">
                     <li>
-                        <a href="#/subCategory/{{subCategory.id}}" ng-bind="subCategory.title"></a>
+                        <a href="#/productList/{{subCategory.id}}" ng-bind="subCategory.title"></a>
                     </li>
                 </ul>
             </li>
         </ul>
+    </div>
+
+    <div>
+        Cart: {{cart.items.length}}
     </div>
 
     <div ng-view></div>
