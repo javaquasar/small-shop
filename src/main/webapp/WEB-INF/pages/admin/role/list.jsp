@@ -7,12 +7,11 @@
 </head>
 <body>
 
-<div class="user-list">
-    <c:forEach items="${users}" var="user">
+<div class="role-list">
+    <c:forEach items="${roles}" var="role">
         <div class="panel panel-default">
             <div class="panel-body">
-                ${user.email}
-                <a href="/app/user/show/${user.id}">Show</a>
+                ${role.title}
             </div>
         </div>
     </c:forEach>

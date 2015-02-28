@@ -11,6 +11,7 @@ import zinjvi.controller.BaseRestController;
 
 import java.util.List;
 
+//TODO move api to separate servlet
 @Controller
 @RequestMapping(value = "/product")
 public class ProductApi extends BaseRestController{
