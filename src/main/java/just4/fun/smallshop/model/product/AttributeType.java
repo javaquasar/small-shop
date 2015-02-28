@@ -1,4 +1,6 @@
-package just4.fun.smallshop.model;
+package just4.fun.smallshop.model.product;
+
+import just4.fun.smallshop.model.BaseEntity;
 
 import javax.persistence.*;
 
@@ -10,7 +12,7 @@ public class AttributeType extends BaseEntity {
     private String name;
 
     @Column(name = "type")
-    @Enumerated(value = EnumType.STRING) //TODO | try to don't save string
+    @Enumerated(value = EnumType.STRING) //TODO | try don't save string
     private AttributeValueType type;
 
     public AttributeType() {

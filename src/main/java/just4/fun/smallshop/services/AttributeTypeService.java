@@ -1,6 +1,6 @@
 package just4.fun.smallshop.services;
 
-import just4.fun.smallshop.model.AttributeType;
+import just4.fun.smallshop.model.product.AttributeType;
 import zinjvi.service.Service;
 
 /**

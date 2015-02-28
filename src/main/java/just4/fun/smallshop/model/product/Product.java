@@ -1,6 +1,6 @@
-package just4.fun.smallshop.model;
+package just4.fun.smallshop.model.product;
 
-import org.hibernate.annotations.*;
+import just4.fun.smallshop.model.BaseEntity;
 
 import javax.persistence.*;
 import javax.persistence.CascadeType;
@@ -18,6 +18,13 @@ public class Product extends BaseEntity {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductAttribute> productAttributes;
 
+    @ManyToOne
+    @JoinColumn(name = "sub_category_id", nullable = false)
+    private SubCategory subCategory;
+
+    @OneToMany(mappedBy = "product")
+    private List<Comment> comments;
+
     public String getName() {
         return name;
     }
@@ -34,6 +41,22 @@ public class Product extends BaseEntity {
     public Product setProductAttributes(List<ProductAttribute> productAttributes) {
         this.productAttributes = productAttributes;
         return this;
+    }
+
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override

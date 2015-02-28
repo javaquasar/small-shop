@@ -4,12 +4,9 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import just4.fun.smallshop.controllers.admin.forms.ProductForm;
 import just4.fun.smallshop.controllers.converters.ProductConverter;
-import just4.fun.smallshop.model.AttributeType;
-import just4.fun.smallshop.model.Product;
-import just4.fun.smallshop.model.ProductAttribute;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.ListUtils;
-import org.apache.commons.collections4.Transformer;
+import just4.fun.smallshop.model.product.AttributeType;
+import just4.fun.smallshop.model.product.Product;
+import just4.fun.smallshop.model.product.ProductAttribute;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

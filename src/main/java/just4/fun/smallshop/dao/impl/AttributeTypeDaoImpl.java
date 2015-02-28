@@ -1,6 +1,6 @@
 package just4.fun.smallshop.dao.impl;
 
-import just4.fun.smallshop.model.AttributeType;
+import just4.fun.smallshop.model.product.AttributeType;
 import just4.fun.smallshop.dao.AttributeTypeDao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

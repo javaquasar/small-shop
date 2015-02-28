@@ -1,7 +1,5 @@
 package just4.fun.smallshop.controllers.admin.forms;
 
-import just4.fun.smallshop.model.AttributeType;
-
 import java.util.ArrayList;
 import java.util.List;
 
