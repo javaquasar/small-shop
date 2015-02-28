@@ -12,8 +12,8 @@ import java.util.List;
  * Created by zinchenko on 27.02.15.
  */
 @Entity
-@Table(name = "identity")
-public class Identity extends BaseEntity {
+@Table(name = "user_info")
+public class User extends BaseEntity {
 
     private String email;
 
