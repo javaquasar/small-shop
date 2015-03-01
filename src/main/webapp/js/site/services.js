@@ -58,8 +58,6 @@ define([
             return Category;
         }]);
 
-    //getBySubCategoryId
-
     services.factory('Product', ['$resource',
         function ($resource) {
 
@@ -75,20 +73,44 @@ define([
                 getBySubCategoryIdAndAttributeValue: {
                     url: root + '/filter/subCategory/:subCategoryId/attributeValue/:attributeValueId',
                     isArray: true
-                },
-                addToCart: {
-                    url: root + '/addToCart/:productId',
-                    method: 'POST'
-                },
-                cartItems: {
-                    url: root + '/cartItems',
-                    isArray: true
                 }
             });
 
 
 
             return Product;
+        }]);
+
+    services.factory('Cart', ['$resource',
+        function ($resource) {
+
+            //TODO move to constants
+            //TODO move 'app' to separate constant
+            var root = '/app/cart';
+
+            var Cart = $resource(root, {}, {
+                addToCart: {
+                    url: root + '/:productId',
+                    method: 'POST'
+                },
+                cartItems: {
+                    url: root + '/cartItems',
+                    isArray: true
+                },
+                order: {
+                    url: root + '/order',
+                    method: 'POST'
+                },
+                removeFromCart: {
+                    url: root + '/:productId',
+                    method: 'DELETE'
+                },
+                clean: {
+                    method: 'DELETE'
+                }
+            });
+
+            return Cart;
         }]);
 
     return services;

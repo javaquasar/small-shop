@@ -23,6 +23,7 @@
 
     <div>
         Cart: {{cart.items.length}}
+        <a href="#/cart">Show Cart</a>
     </div>
 
     <div ng-view></div>

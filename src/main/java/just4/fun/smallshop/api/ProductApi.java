@@ -33,27 +33,6 @@ public class ProductApi extends BaseRestController<Product, Long> {
         return productService.getBySubCategoryId(subCategoryId);
     }
 
-    @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
-    @ResponseBody
-    public void addToCart(@RequestBody Long productId, HttpSession session) {
-        getCartItems(session).add(productId);
-    }
-
-    private List<Long> getCartItems(HttpSession session) {
-        List<Long> cartItems = (List<Long>) session.getAttribute(CART_ITEMS_KEY);
-        if(cartItems == null) {
-            cartItems = new ArrayList<Long>();
-            session.setAttribute(CART_ITEMS_KEY, cartItems);
-        }
-        return cartItems;
-    }
-
-    @RequestMapping("/cartItems")
-    @ResponseBody
-    public List<Long> cartItems(HttpSession session) {
-        return getCartItems(session);
-    }
-
     @RequestMapping("/filter/subCategory/{subCategoryId}/attributeValue/{attributeValueId}")
     @ResponseBody
     public List<Product> filter(

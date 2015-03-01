@@ -1,0 +1,11 @@
+<div>
+    Cart:
+    <div>
+        <div ng-repeat="product in cart.products">
+            {{product.name}}
+            <button ng-click="removeFromCart(product.id)">Remove</button>
+        </div>
+    </div>
+    <button ng-click="order()">Order</button>
+    <button ng-click="clean()">Clean</button>
+</div>

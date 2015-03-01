@@ -1,15 +1,17 @@
 define([
     'angular',
-    'text!tmpl/order.html',
+    'text!tmpl/main.html',
     'text!tmpl/productList.html',
     'text!tmpl/productShow.html',
+    'text!tmpl/cart.html',
     'controllers',
     'angularRoute'
 ], function (
     ng,
-    orderTmpl,
+    mainTmpl,
     productListTmpl,
-    productShowTmpl
+    productShowTmpl,
+    cartTmpl
     ) {
 
     console.log("app");
@@ -21,9 +23,9 @@ define([
 
     app.config(['$routeProvider', function ($routeProvider) {
                 $routeProvider
-                    .when('/order', {
-                        template: orderTmpl,
-                        controller: 'OrderCtrl'
+                    .when('/main', {
+                        template: mainTmpl,
+                        controller: 'MainCtrl'
                     })
                     .when('/productList/:subCategoryId', {
                         template: productListTmpl,
@@ -33,8 +35,12 @@ define([
                         template: productShowTmpl,
                         controller: 'ProductShowCtrl'
                     })
+                    .when('/cart', {
+                        template: cartTmpl,
+                        controller: 'CartCtrl'
+                    })
                     .otherwise({
-                        redirectTo: '/order'
+                        redirectTo: '/main'
                     });
 
     }]);

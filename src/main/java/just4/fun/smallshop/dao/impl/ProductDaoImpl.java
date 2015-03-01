@@ -34,10 +34,17 @@ public class ProductDaoImpl extends BaseHibernateRepository<Product, Long>
     public List<Product> getBySubCategoryIdAndAttrValueId(Long subCategoryId, Long attributeValueId) {
         return getSession()
                 .createQuery("select p from Product p join p.attributes as attribute " +
-                    "where p.subCategory.id = :subCategoryId and " +
-                    "attribute.id = :attributeValueId")
+                        "where p.subCategory.id = :subCategoryId and " +
+                        "attribute.id = :attributeValueId")
                 .setLong("subCategoryId", subCategoryId)
                 .setLong("attributeValueId", attributeValueId)
+                .list();
+    }
+
+    @Override
+    public List<Product> findByIds(List<Long> ids) {
+        return getSession().createQuery("from Product p where p.id in (:ids)")
+                .setParameterList("ids", ids)
                 .list();
     }
 }
