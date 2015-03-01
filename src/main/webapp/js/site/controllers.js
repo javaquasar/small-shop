@@ -22,17 +22,42 @@ define([
 
         }]);
 
-    controllers.controller('ProductListCtrl', ['$scope', '$cookies', '$log', 'Product', '$routeParams', 'Order', '$rootScope',
-        function ($scope, $cookies, $log, Product, $routeParams, Order, $rootScope) {
+    controllers.controller('ProductListCtrl', ['$scope', '$log', 'Product', 'Category', '$routeParams', '$rootScope',
+        function ($scope, $log, Product, Category, $routeParams, $rootScope) {
+
             console.log('ProductListCtrl');
+
+            /**
+             *
+             * INIT
+             *
+             */
 
             $scope.products = Product.getBySubCategoryId({
                 subCategoryId: $routeParams.subCategoryId
             });
 
+            $scope.attributes = Category.attributes({
+                subCategoryId: $routeParams.subCategoryId
+            });
+
+            /**
+             *
+             * METHODS
+             *
+             */
+
             $scope.addToCart = function(productId) {
                 $rootScope.cart.items.push(productId);
                 Product.addToCart(productId);
+            };
+
+            $scope.filterByAttribute = function(attributeValueId) {
+                console.log('filtering...');
+                $scope.products = Product.getBySubCategoryIdAndAttributeValue({
+                    subCategoryId: $routeParams.subCategoryId,
+                    attributeValueId: attributeValueId
+                });
             }
 
         }]);

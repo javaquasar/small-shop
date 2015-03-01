@@ -12,4 +12,8 @@ public interface ProductDao extends Repository<Product, Long> {
 
     List<Product> getBySubCategoryId(Long subCategoryId);
 
+    List<Product> getBySubCategoryIdAndAttrValueId(Long subCategoryId, Long attributeValueId);
+
+
+
 }

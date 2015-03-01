@@ -48,7 +48,12 @@ define([
             //TODO move 'app' to separate constant
             var root = '/app/category';
 
-            var Category = $resource(root, {}, {});
+            var Category = $resource(root, {}, {
+                attributes: {
+                    url: root + '/attributes/:subCategoryId',
+                    isArray: true
+                }
+            });
 
             return Category;
         }]);
@@ -65,6 +70,10 @@ define([
             var Product = $resource(root, {productId:'@id'}, {
                 getBySubCategoryId: {
                     url: root + '/bySubCategoryId/:subCategoryId',
+                    isArray: true
+                },
+                getBySubCategoryIdAndAttributeValue: {
+                    url: root + '/filter/subCategory/:subCategoryId/attributeValue/:attributeValueId',
                     isArray: true
                 },
                 addToCart: {

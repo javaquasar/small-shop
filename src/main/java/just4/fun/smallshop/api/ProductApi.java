@@ -54,4 +54,12 @@ public class ProductApi extends BaseRestController<Product, Long> {
         return getCartItems(session);
     }
 
+    @RequestMapping("/filter/subCategory/{subCategoryId}/attributeValue/{attributeValueId}")
+    @ResponseBody
+    public List<Product> filter(
+            @PathVariable("subCategoryId") Long subCategoryId,
+            @PathVariable("attributeValueId") Long attributeValueId) {
+        return productService.getBySubCategoryIdAndAttrValueId(subCategoryId, attributeValueId);
+    }
+
 }

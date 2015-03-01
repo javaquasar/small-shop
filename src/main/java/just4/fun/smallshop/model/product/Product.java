@@ -15,8 +15,9 @@ public class Product extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<ProductAttribute> productAttributes;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_attribute")
+    private List<Attribute> attributes;
 
     @ManyToOne
     @JoinColumn(name = "sub_category_id", nullable = false)
@@ -34,12 +35,12 @@ public class Product extends BaseEntity {
         return this;
     }
 
-    public List<ProductAttribute> getProductAttributes() {
-        return productAttributes;
+    public List<Attribute> getAttributes() {
+        return attributes;
     }
 
-    public Product setProductAttributes(List<ProductAttribute> productAttributes) {
-        this.productAttributes = productAttributes;
+    public Product setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
         return this;
     }
 

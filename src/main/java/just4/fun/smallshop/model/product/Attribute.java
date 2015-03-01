@@ -1,5 +1,6 @@
 package just4.fun.smallshop.model.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import just4.fun.smallshop.model.BaseEntity;
 
 import javax.persistence.Column;
@@ -9,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "product_attribute")
-public class ProductAttribute extends BaseEntity {
+@Table(name = "attribute")
+public class Attribute extends BaseEntity {
 
     @Column(name = "numeric_value")
     private Integer numericValue;
@@ -18,14 +19,10 @@ public class ProductAttribute extends BaseEntity {
     @Column(name = "string_value")
     private String stringValue;
 
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "attribute_type_id")
+    @JsonBackReference
     private AttributeType attributeType;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
-    private Product product;
 
     public String getValueAsString() {
         if(attributeType.getType() == AttributeValueType.NUMBER) {
@@ -50,14 +47,6 @@ public class ProductAttribute extends BaseEntity {
 
     public void setStringValue(String stringValue) {
         this.stringValue = stringValue;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public AttributeType getAttributeType() {

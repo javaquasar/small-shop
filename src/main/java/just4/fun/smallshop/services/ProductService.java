@@ -12,4 +12,6 @@ public interface ProductService extends Service<Product, Long> {
 
     List<Product> getBySubCategoryId(Long subCategoryId);
 
+    List<Product> getBySubCategoryIdAndAttrValueId(Long subCategoryId, Long attributeValueId);
+
 }

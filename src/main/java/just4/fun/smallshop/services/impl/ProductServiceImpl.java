@@ -28,6 +28,10 @@ public class ProductServiceImpl extends BaseService<Product, Long> implements Pr
         return productDao.getBySubCategoryId(subCategoryId);
     }
 
+    public List<Product> getBySubCategoryIdAndAttrValueId(Long subCategoryId, Long attributeValueId) {
+        return productDao.getBySubCategoryIdAndAttrValueId(subCategoryId, attributeValueId);
+    }
+
     public ProductDao getProductDao() {
         return productDao;
     }

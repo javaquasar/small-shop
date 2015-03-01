@@ -4,9 +4,9 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import just4.fun.smallshop.controllers.admin.forms.ProductForm;
 import just4.fun.smallshop.controllers.converters.ProductConverter;
+import just4.fun.smallshop.model.product.Attribute;
 import just4.fun.smallshop.model.product.AttributeType;
 import just4.fun.smallshop.model.product.Product;
-import just4.fun.smallshop.model.product.ProductAttribute;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -22,23 +22,23 @@ public class ManualProductConverter implements ProductConverter {
         Product product = new Product();
         product.setId(productForm.getId());
         product.setName(productForm.getTitle());
-        List<ProductAttribute> attributes = extractAttributes(productForm.getAttributes(), product);
-        product.setProductAttributes(attributes);
+        List<Attribute> attributes = extractAttributes(productForm.getAttributes(), product);
+        product.setAttributes(attributes);
         return product;
     }
 
-    private List<ProductAttribute> extractAttributes(List<ProductForm.AttributeFormData> attributeFormDatas, final Product product) {
+    private List<Attribute> extractAttributes(List<ProductForm.AttributeFormData> attributeFormDatas, final Product product) {
         //TODO | try to use utils
-        List<ProductAttribute> productAttributes = new ArrayList<ProductAttribute>();
+        List<Attribute> attributes = new ArrayList<Attribute>();
         for (ProductForm.AttributeFormData attributeFormData: attributeFormDatas) {
-            ProductAttribute attribute = new ProductAttribute();
+            Attribute attribute = new Attribute();
             attribute.setId(attributeFormData.getId());
             attribute.setAttributeType(new AttributeType(attributeFormData.getAttributeTypeId()));
             attribute.setStringValue(attributeFormData.getValue());
-            attribute.setProduct(product);
-            productAttributes.add(attribute);
+//            attribute.setProduct(product);
+            attributes.add(attribute);
         }
-        return productAttributes;
+        return attributes;
 
 //        return Lists.transform(attributeFormDatas, new Function<ProductForm.AttributeFormData, ProductAttribute>() {
 //            @Override
@@ -58,14 +58,14 @@ public class ManualProductConverter implements ProductConverter {
         ProductForm productForm = new ProductForm();
         productForm.setId(product.getId());
         productForm.setTitle(product.getName());
-        productForm.setAttributes(extractAttributes(product.getProductAttributes()));
+        productForm.setAttributes(extractAttributes(product.getAttributes()));
         return productForm;
     }
 
-    private List<ProductForm.AttributeFormData> extractAttributes(List<ProductAttribute> attributes) {
-        return Lists.transform(attributes, new Function<ProductAttribute, ProductForm.AttributeFormData>() {
+    private List<ProductForm.AttributeFormData> extractAttributes(List<Attribute> attributes) {
+        return Lists.transform(attributes, new Function<Attribute, ProductForm.AttributeFormData>() {
             @Override
-            public ProductForm.AttributeFormData apply(ProductAttribute attribute) {
+            public ProductForm.AttributeFormData apply(Attribute attribute) {
                 ProductForm.AttributeFormData attributeFormData = new ProductForm.AttributeFormData();
                 attributeFormData.setId(attribute.getId());
                 attributeFormData.setValue(attribute.getValueAsString());

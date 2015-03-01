@@ -1,4 +1,20 @@
 <div>
+    <div>
+        Attributes:
+    </div>
+    <div>
+        <div ng-repeat="attribute in attributes">
+            {{attribute.name}}
+            <div ng-repeat="attributeValue in attribute.attributes">
+                <button ng-click="filterByAttribute(attributeValue.id)">{{attributeValue.stringValue}}</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        Products:
+    </div>
     <div ng-repeat="product in products">
         <div>
             {{product.name}}
