@@ -1,6 +1,8 @@
 package just4.fun.smallshop.api;
 
 import just4.fun.smallshop.dto.CartDto;
+import just4.fun.smallshop.dto.OrderDto;
+import just4.fun.smallshop.services.OrderService;
 import just4.fun.smallshop.session.CartSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class CartApi {
 
     @Autowired
     private CartSession cartSession;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -40,8 +45,8 @@ public class CartApi {
 
     @RequestMapping("/order")
     @ResponseBody
-    public void order() {
-
+    public void order(@RequestBody OrderDto orderDto) {
+        orderService.order(orderDto);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)

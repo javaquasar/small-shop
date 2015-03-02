@@ -48,4 +48,7 @@ public class CartSessionImpl implements CartSession {
         return cart;
     }
 
+    public List<Long> getProductIds() {
+        return productIds;
+    }
 }

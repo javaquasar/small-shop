@@ -100,6 +100,22 @@ define([
 
         }]);
 
+    controllers.controller('OrderCtrl', ['$scope', '$cookies', '$log', 'Product', '$routeParams', '$rootScope', 'Cart',
+        function ($scope, $cookies, $log, Product, $routeParams, $rootScope, Cart) {
+            console.log('OrderCtrl');
+
+            /**
+             *
+             * METHODS
+             *
+             */
+            $scope.orderProducts = function() {
+                console.log('ordering...');
+                Cart.order($scope.order);
+            };
+
+        }]);
+
 
 
     return controllers;

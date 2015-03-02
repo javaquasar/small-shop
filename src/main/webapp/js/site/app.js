@@ -4,6 +4,7 @@ define([
     'text!tmpl/productList.html',
     'text!tmpl/productShow.html',
     'text!tmpl/cart.html',
+    'text!tmpl/order.html',
     'controllers',
     'angularRoute'
 ], function (
@@ -11,7 +12,8 @@ define([
     mainTmpl,
     productListTmpl,
     productShowTmpl,
-    cartTmpl
+    cartTmpl,
+    orderTmpl
     ) {
 
     console.log("app");
@@ -38,6 +40,10 @@ define([
                     .when('/cart', {
                         template: cartTmpl,
                         controller: 'CartCtrl'
+                    })
+                    .when('/order', {
+                        template: orderTmpl,
+                        controller: 'OrderCtrl'
                     })
                     .otherwise({
                         redirectTo: '/main'

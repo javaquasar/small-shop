@@ -1,3 +1,5 @@
+delete from order_info;
+
 delete from product_attribute;
 delete from sub_category_attribute_type;
 delete from attribute;

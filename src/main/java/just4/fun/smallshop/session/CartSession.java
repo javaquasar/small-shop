@@ -4,6 +4,8 @@ import just4.fun.smallshop.dto.CartDto;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by zinchenko on 01.03.15.
  */
@@ -16,5 +18,7 @@ public interface CartSession {
     void cleanCart();
 
     CartDto getCart();
+
+    List<Long> getProductIds();
 
 }

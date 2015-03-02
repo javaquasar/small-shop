@@ -12,6 +12,13 @@ import java.util.List;
 @Table(name = "product")
 public class Product extends BaseEntity {
 
+    public Product() {
+    }
+
+    public Product(Long id) {
+        super(id);
+    }
+
     @Column(name = "name")
     private String name;
 
