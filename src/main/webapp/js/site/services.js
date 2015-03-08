@@ -73,6 +73,11 @@ define([
                 getBySubCategoryIdAndAttributeValue: {
                     url: root + '/filter/subCategory/:subCategoryId/attributeValue/:attributeValueId',
                     isArray: true
+                },
+                search: {
+                    url: root + '/search',
+                    method: 'POST',
+                    isArray: true
                 }
             });
 

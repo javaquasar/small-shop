@@ -1,5 +1,6 @@
 package just4.fun.smallshop.services;
 
+import just4.fun.smallshop.api.dto.ProductSearchDto;
 import just4.fun.smallshop.model.product.Product;
 import zinjvi.service.Service;
 
@@ -15,5 +16,7 @@ public interface ProductService extends Service<Product, Long> {
     List<Product> getBySubCategoryIdAndAttrValueId(Long subCategoryId, Long attributeValueId);
 
     List<Product> findByIds(List<Long> ids);
+
+    List<Product> search(ProductSearchDto productSearchDto);
 
 }

@@ -1,5 +1,6 @@
 package just4.fun.smallshop.dao.impl;
 
+import just4.fun.smallshop.api.dto.ProductSearchDto;
 import just4.fun.smallshop.model.product.Product;
 import just4.fun.smallshop.dao.ProductDao;
 import org.hibernate.SessionFactory;
@@ -45,6 +46,13 @@ public class ProductDaoImpl extends BaseHibernateRepository<Product, Long>
     public List<Product> findByIds(List<Long> ids) {
         return getSession().createQuery("from Product p where p.id in (:ids)")
                 .setParameterList("ids", ids)
+                .list();
+    }
+
+    @Override
+    public List<Product> search(ProductSearchDto productSearchDto) {
+        return getSession().createQuery("from Product p where p.name like :name")
+                .setString("name", "%" + productSearchDto.getQuery() + "%")
                 .list();
     }
 }

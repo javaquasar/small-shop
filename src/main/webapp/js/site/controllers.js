@@ -116,6 +116,26 @@ define([
 
         }]);
 
+    controllers.controller('SearchCtrl', ['$scope', 'Product',
+        function ($scope, Product) {
+            console.log('SearchCtrl');
+
+            /**
+             *
+             * METHODS
+             *
+             */
+            $scope.search = function() {
+                console.log('searching...');
+                Product.search({
+                    query: $scope.searchForm.query
+                }, function(data) {
+                    console.log('search ok')
+                });
+            };
+
+        }]);
+
 
 
     return controllers;

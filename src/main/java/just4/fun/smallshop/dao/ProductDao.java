@@ -1,5 +1,6 @@
 package just4.fun.smallshop.dao;
 
+import just4.fun.smallshop.api.dto.ProductSearchDto;
 import just4.fun.smallshop.model.product.Product;
 import zinjvi.repository.Repository;
 
@@ -15,5 +16,7 @@ public interface ProductDao extends Repository<Product, Long> {
     List<Product> getBySubCategoryIdAndAttrValueId(Long subCategoryId, Long attributeValueId);
 
     List<Product> findByIds(List<Long> ids);
+
+    List<Product> search(ProductSearchDto productSearchDto);
 
 }

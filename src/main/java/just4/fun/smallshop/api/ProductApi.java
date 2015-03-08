@@ -1,5 +1,6 @@
 package just4.fun.smallshop.api;
 
+import just4.fun.smallshop.api.dto.ProductSearchDto;
 import just4.fun.smallshop.model.product.Product;
 import just4.fun.smallshop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,12 @@ public class ProductApi extends BaseRestController<Product, Long> {
             @PathVariable("attributeValueId") Long attributeValueId) {
         return productService.getBySubCategoryIdAndAttrValueId(subCategoryId, attributeValueId);
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Product> search(@RequestBody ProductSearchDto productSearchDto) {
+        return productService.search(productSearchDto);
+    }
+
 
 }

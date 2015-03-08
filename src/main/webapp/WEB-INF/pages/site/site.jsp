@@ -21,6 +21,13 @@
         </ul>
     </div>
 
+    <div ng-controller="SearchCtrl">
+        <form>
+            <input ng-model="searchForm.query">
+            <button ng-click="search()">Search</button>
+        </form>
+    </div>
+
     <div>
         Cart: {{cart.items.length}}
         <a href="#/cart">Show Cart</a>

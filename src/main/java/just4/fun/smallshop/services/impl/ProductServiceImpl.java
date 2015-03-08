@@ -1,5 +1,6 @@
 package just4.fun.smallshop.services.impl;
 
+import just4.fun.smallshop.api.dto.ProductSearchDto;
 import just4.fun.smallshop.model.product.Product;
 import just4.fun.smallshop.dao.ProductDao;
 import just4.fun.smallshop.services.ProductService;
@@ -35,6 +36,11 @@ public class ProductServiceImpl extends BaseService<Product, Long> implements Pr
     @Override
     public List<Product> findByIds(List<Long> ids) {
         return productDao.findByIds(ids);
+    }
+
+    @Override
+    public List<Product> search(ProductSearchDto productSearchDto) {
+        return productDao.search(productSearchDto);
     }
 
     public ProductDao getProductDao() {
