@@ -1,8 +1,12 @@
 package just4.fun.smallshop.api;
 
 import just4.fun.smallshop.api.dto.ProductSearchDto;
+import just4.fun.smallshop.dao.ProductDao;
+import just4.fun.smallshop.dao.impl.ProductDaoImpl;
+import just4.fun.smallshop.model.Test;
 import just4.fun.smallshop.model.product.Product;
 import just4.fun.smallshop.services.ProductService;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +50,15 @@ public class ProductApi extends BaseRestController<Product, Long> {
     @ResponseBody
     public List<Product> search(@RequestBody ProductSearchDto productSearchDto) {
         return productService.search(productSearchDto);
+    }
+
+    @Autowired
+    ProductDao productDao;
+
+    @RequestMapping("/addTest/{name}")
+    @ResponseBody
+    public Test addTest(@PathVariable("name") String name) {
+        return productDao.add(name);
     }
 
 

@@ -1,12 +1,16 @@
 package just4.fun.smallshop.dao.impl;
 
 import just4.fun.smallshop.api.dto.ProductSearchDto;
+import just4.fun.smallshop.model.Test;
 import just4.fun.smallshop.model.product.Product;
 import just4.fun.smallshop.dao.ProductDao;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import zinjvi.repository.impl.BaseHibernateRepository;
 
 import java.util.List;
@@ -51,8 +55,26 @@ public class ProductDaoImpl extends BaseHibernateRepository<Product, Long>
 
     @Override
     public List<Product> search(ProductSearchDto productSearchDto) {
-        return getSession().createQuery("from Product p where p.name like :name")
-                .setString("name", "%" + productSearchDto.getQuery() + "%")
-                .list();
+        FullTextSession session = Search.getFullTextSession(getSession());
+
+        QueryBuilder b = session.getSearchFactory()
+                .buildQueryBuilder().forEntity(Product.class).get();
+
+        org.apache.lucene.search.Query luceneQuery =
+                b.keyword()
+                        .onField("name").boostedTo(3)
+                        .matching(productSearchDto.getQuery())
+                        .createQuery();
+        List<Product> result = session.createFullTextQuery(luceneQuery).list();
+        return result;
     }
+
+    @Transactional
+    public Test add(String name) {
+        Test test = new Test();
+        test.setName(name);
+        getSession().save(test);
+        return test;
+    }
+
 }

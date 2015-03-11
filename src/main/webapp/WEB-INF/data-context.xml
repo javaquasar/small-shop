@@ -38,6 +38,8 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">${data.hibernate.show_sql}</prop>
                 <prop key="hibernate.format_sql">${data.hibernate.show_sql}</prop>
+                <prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.impl.FSDirectoryProvider</prop>
+                <prop key="hibernate.search.default.indexBase">/home/zinchenko/work/projects/zinjvi/small-shop-indexes</prop>
             </props>
         </property>
     </bean>

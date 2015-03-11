@@ -1,6 +1,7 @@
 package just4.fun.smallshop.model.product;
 
 import just4.fun.smallshop.model.BaseEntity;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.CascadeType;
@@ -10,16 +11,25 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
-public class Product extends BaseEntity {
+@Indexed
+@Analyzer(impl = org.apache.lucene.analysis.standard.StandardAnalyzer.class)
+public class Product {
 
     public Product() {
     }
 
     public Product(Long id) {
-        super(id);
+        this.id = id;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "serial")
+    @DocumentId
+    private Long id;
+
     @Column(name = "name")
+    @Field(store = Store.YES)
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -32,6 +42,14 @@ public class Product extends BaseEntity {
 
     @OneToMany(mappedBy = "product")
     private List<Comment> comments;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
