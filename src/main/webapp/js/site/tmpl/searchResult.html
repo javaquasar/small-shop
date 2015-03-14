@@ -1,0 +1,12 @@
+<div>
+    <div>
+        Products:
+    </div>
+    <div ng-repeat="product in products">
+        <div>
+            {{product.name}}
+            <!--<button ng-click="addToCart(product.id)">Buy</button>-->
+            <a href="#/product/show/{{product.id}}">show</a>
+        </div>
+    </div>
+</div>

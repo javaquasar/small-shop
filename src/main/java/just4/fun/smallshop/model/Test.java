@@ -1,5 +1,8 @@
 package just4.fun.smallshop.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
@@ -25,9 +28,9 @@ public class Test {
     @Field(store = Store.YES)
     private String name;
 
-    @OneToMany(mappedBy = "test")
+//    @OneToMany(mappedBy = "test")
 //    @Field(index = Index.NO)
-    private List<SubTest> subTests;
+//    private List<SubTest> subTests;
 
     public Long getId() {
         return id;
@@ -45,11 +48,11 @@ public class Test {
         this.name = name;
     }
 
-    public List<SubTest> getSubTests() {
-        return subTests;
-    }
+//    public List<SubTest> getSubTests() {
+//        return subTests;
+//    }
 
-    public void setSubTests(List<SubTest> subTests) {
-        this.subTests = subTests;
-    }
+//    public void setSubTests(List<SubTest> subTests) {
+//        this.subTests = subTests;
+//    }
 }

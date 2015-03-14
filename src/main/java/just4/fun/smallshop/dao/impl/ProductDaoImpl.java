@@ -69,12 +69,4 @@ public class ProductDaoImpl extends BaseHibernateRepository<Product, Long>
         return result;
     }
 
-    @Transactional
-    public Test add(String name) {
-        Test test = new Test();
-        test.setName(name);
-        getSession().save(test);
-        return test;
-    }
-
 }

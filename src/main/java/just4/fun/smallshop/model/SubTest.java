@@ -21,9 +21,9 @@ public class SubTest {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "test_id")
-    private Test test;
+//    @ManyToOne
+//    @JoinColumn(name = "test_id")
+//    private Test test;
 
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class SubTest {
         this.name = name;
     }
 
-    public Test getTest() {
-        return test;
-    }
+//    public Test getTest() {
+//        return test;
+//    }
 
-    public void setTest(Test test) {
-        this.test = test;
-    }
+//    public void setTest(Test test) {
+//        this.test = test;
+//    }
 }

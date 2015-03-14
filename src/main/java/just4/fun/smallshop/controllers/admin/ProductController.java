@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import static just4.fun.smallshop.controllers.ControllerConstants.*;
+import static just4.fun.smallshop.controllers.ControllerConstants.ADMIN_PATH;
+
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+
+    public static final String PRODUCT_PATH = ADMIN_PATH + "product/";
 
     @Autowired
     private ProductService productService;
@@ -30,14 +35,14 @@ public class ProductController {
     @RequestMapping("/list")
     public String list(Model model) {
         model.addAttribute("products", productService.findAll());
-        return "admin/product/list";
+        return PRODUCT_PATH + "list";
     }
 
     @RequestMapping("/create")
     public String create(Model model) {
         model.addAttribute("productForm", new ProductForm());
         model.addAttribute("types", attributeTypeService.findAll());
-        return "admin/product/edit";
+        return PRODUCT_PATH + "edit";
     }
 
     @RequestMapping("/edit/{id}")
@@ -49,7 +54,7 @@ public class ProductController {
         }
         model.addAttribute("productForm", productForm);
         model.addAttribute("types", attributeTypeService.findAll());
-        return "admin/product/edit";
+        return PRODUCT_PATH + "edit";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -62,7 +67,7 @@ public class ProductController {
     @RequestMapping("/show/{id}")
     public String save(Model model, @PathVariable Long id) {
         model.addAttribute("product", productService.find(id));
-        return "admin/product/show";
+        return PRODUCT_PATH + "show";
     }
 
     public ProductService getProductService() {

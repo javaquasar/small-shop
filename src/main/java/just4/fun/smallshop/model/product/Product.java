@@ -1,5 +1,6 @@
 package just4.fun.smallshop.model.product;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import just4.fun.smallshop.model.BaseEntity;
 import org.hibernate.search.annotations.*;
 

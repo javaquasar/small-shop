@@ -116,8 +116,8 @@ define([
 
         }]);
 
-    controllers.controller('SearchCtrl', ['$scope', 'Product',
-        function ($scope, Product) {
+    controllers.controller('SearchCtrl', ['$scope', 'Product', '$location',
+        function ($scope, Product, $location) {
             console.log('SearchCtrl');
 
             /**
@@ -133,6 +133,16 @@ define([
                     console.log('search ok')
                 });
             };
+
+        }]);
+
+    controllers.controller('SearchResultCtrl', ['$scope', '$log', 'Product', 'Category', '$routeParams', '$rootScope', 'Cart',
+        function ($scope, $log, Product, Category, $routeParams, $rootScope, Cart) {
+
+
+            $scope.products = Product.search({
+                query: $routeParams.query
+            });
 
         }]);
 

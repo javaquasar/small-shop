@@ -23,8 +23,9 @@
 
     <div ng-controller="SearchCtrl">
         <form>
-            <input ng-model="searchForm.query">
-            <button ng-click="search()">Search</button>
+            <input ng-model="query">
+            <a href="#/searchResult/{{query}}">Search</a>
+            <%--<button ng-click="search()">Search</button>--%>
         </form>
     </div>
 

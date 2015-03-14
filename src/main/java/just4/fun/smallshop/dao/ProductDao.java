@@ -20,6 +20,4 @@ public interface ProductDao extends Repository<Product, Long> {
 
     List<Product> search(ProductSearchDto productSearchDto);
 
-    Test add(String name);
-
 }
