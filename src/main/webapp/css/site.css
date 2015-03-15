@@ -3,11 +3,15 @@
     width: 900px;
 }
 
+.categories {
+    background-color: rgba(236, 236, 236, 0.64);
+}
+
 .categories li {
     list-style-type: none;
 }
 
-.categories ul {
+ul {
     margin: 0;
     padding: 0;
 
@@ -31,5 +35,30 @@
 .categories__sub {
     display: none;
     position: absolute;
+    background: rgb(208, 208, 208);
+    padding: 10px;
+    margin-top: 10px;
 }
+
+/* logo */
+
+.logo {
+    display: inline-block;
+}
+
+/* search */
+
+.search {
+    display: inline-block;
+}
+
+/* cart */
+
+.cart {
+    display: inline-block;
+    float: right;
+}
+
+
+
 
