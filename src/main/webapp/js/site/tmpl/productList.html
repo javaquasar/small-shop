@@ -1,25 +1,16 @@
-<div>
-    <div>
-        Attributes:
-    </div>
-    <div>
-        <div ng-repeat="attribute in attributes">
-            {{attribute.name}}
-            <div ng-repeat="attributeValue in attribute.attributes">
-                <button ng-click="filterByAttribute(attributeValue.id)">{{attributeValue.stringValue}}</button>
-            </div>
-        </div>
-    </div>
-
-
-    <div>
-        Products:
-    </div>
-    <div ng-repeat="product in products">
-        <div>
-            {{product.name}}
-            <button ng-click="addToCart(product.id)">Buy</button>
-            <a href="#/product/show/{{product.id}}">show</a>
+<div class="attributes">
+    <div ng-repeat="attribute in attributes">
+        {{attribute.name}}
+        <div ng-repeat="attributeValue in attribute.attributes">
+            <input id="attr-{{attributeValue.id}}" type="radio" name="filter" ng-click="filterByAttribute(attributeValue.id)">
+            <label for="attr-{{attributeValue.id}}">{{attributeValue.stringValue}}</label>
         </div>
     </div>
 </div>
+<div class="products">
+    <div class="product" ng-repeat="product in products">
+        <a href="#/product/show/{{product.id}}">{{product.name}}</a>
+        <button class="product__control-buy" ng-click="addToCart(product.id)">Buy</button>
+    </div>
+</div>
+
