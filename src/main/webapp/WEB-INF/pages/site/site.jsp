@@ -2,18 +2,18 @@
 <html>
 <head>
     <title></title>
-    <%--<link href="/css/site.css" type="text/css" rel="stylesheet">--%>
+    <link href="/css/site.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 
-<div id="appContent">
+<div id="appContent" class="app-content">
 
-    <div ng-show="categories" ng-controller="CategoriesCtrl">
-        <ul ng-repeat="category in categories">
-            <li>
-                <span ng-bind="category.title"></span>
-                <ul ng-repeat="subCategory in category.subCategories">
-                    <li>
+    <div class="categories" ng-show="categories" ng-controller="CategoriesCtrl">
+        <ul>
+            <li class="categories__category-item" ng-repeat="category in categories">
+                <span class="categories__category-title" ng-bind="category.title"></span>
+                <ul class="categories__sub">
+                    <li ng-repeat="subCategory in category.subCategories">
                         <a href="#/productList/{{subCategory.id}}" ng-bind="subCategory.title"></a>
                     </li>
                 </ul>

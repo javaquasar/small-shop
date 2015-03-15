@@ -1,0 +1,35 @@
+.app-content {
+    margin: 0 auto;
+    width: 900px;
+}
+
+.categories li {
+    list-style-type: none;
+}
+
+.categories ul {
+    margin: 0;
+    padding: 0;
+
+}
+
+.categories ul:after {
+    content: ' ';
+    display: block;
+}
+
+.categories__category-item {
+    /*float: left;*/
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.categories__category-item:hover .categories__sub {
+    display: block;
+}
+
+.categories__sub {
+    display: none;
+    position: absolute;
+}
+
