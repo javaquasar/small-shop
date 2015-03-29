@@ -61,10 +61,10 @@ public class ProductDaoImpl extends BaseHibernateRepository<Product, Long>
                 .buildQueryBuilder().forEntity(Product.class).get();
 
         org.apache.lucene.search.Query luceneQuery =
-                b.keyword()
-                        .onField("name").boostedTo(3)
-                        .matching(productSearchDto.getQuery())
-                        .createQuery();
+            b.keyword()
+                .onField("name")
+                .matching(productSearchDto.getQuery())
+                .createQuery();
         List<Product> result = session.createFullTextQuery(luceneQuery).list();
         return result;
     }

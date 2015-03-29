@@ -321,9 +321,11 @@
             <version>5.1.0.Final</version>
         </dependency>
 
-
-
-
+        <!--<dependency>-->
+            <!--<groupId>com.github.debop</groupId>-->
+            <!--<artifactId>hibernate-redis</artifactId>-->
+            <!--<version>1.6.1</version>-->
+        <!--</dependency>-->
 
     </dependencies>
     <build>
@@ -427,6 +429,12 @@
                 <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
+
+            <repository>
+                <id>debop-releases-bintray</id>
+                <url>http://dl.bintray.com/debop/maven</url>
+            </repository>
+
     </repositories>
 
 </project>

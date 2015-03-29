@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/category")
-public class CategoryApi extends BaseRestController{
+public class CategoryApi extends BaseRestController {
 
     @Autowired
     private CategoryService categoryService;
