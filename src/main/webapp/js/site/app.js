@@ -7,6 +7,7 @@ define([
     'text!tmpl/order.html',
     'text!tmpl/searchResult.html',
     'controllers',
+    'directives',
     'angularRoute'
 ], function (
     ng,

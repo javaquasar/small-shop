@@ -29,18 +29,18 @@
     </div>
 
 
-    <div class="categories" ng-show="categories" ng-controller="CategoriesCtrl">
-        <ul>
-            <li class="categories__category-item" ng-repeat="category in categories">
-                <span class="categories__category-title" ng-bind="category.title"></span>
-                <ul class="categories__sub">
-                    <li ng-repeat="subCategory in category.subCategories">
-                        <a href="#/productList/{{subCategory.id}}" ng-bind="subCategory.title"></a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <%--<div class="categories" ng-show="categories" ng-controller="CategoriesCtrl">--%>
+        <%--<ul>--%>
+            <%--<li class="categories__category-item" ng-repeat="category in categories">--%>
+                <%--<span class="categories__category-title" ng-bind="category.title"></span>--%>
+                <%--<ul class="categories__sub">--%>
+                    <%--<li ng-repeat="subCategory in category.subCategories">--%>
+                        <%--<a href="#/productList/{{subCategory.id}}" ng-bind="subCategory.title"></a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
+        <%--</ul>--%>
+    <%--</div>--%>
 
 
     <div ng-view></div>

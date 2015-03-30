@@ -1,12 +1,15 @@
 define([
     'angular',
     'angularCookies',
-    'services'
+    'services',
+    'directives'
 ], function (ng) {
-    var controllers = ng.module('controllers', ['ngCookies', 'ngRoute', 'services']);
+    var controllers = ng.module('controllers', ['ngCookies', 'ngRoute', 'services', 'siteDirectives']);
 
-    controllers.controller('MainCtrl', ['$scope', '$cookies', '$log',
-        function ($scope, $cookies, $log) {
+    controllers.controller('MainCtrl', ['$scope', '$cookies', '$log', 'Category',
+        function ($scope, $cookies, $log, Category) {
+            $scope.categories = Category.query();
+
             console.log('main');
         }]);
 

@@ -38,8 +38,8 @@ public class Product {
     private List<Attribute> attributes;
 
     @ManyToOne
-    @JoinColumn(name = "sub_category_id", nullable = false)
-    private SubCategory subCategory;
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     @OneToMany(mappedBy = "product")
     private List<Comment> comments;
@@ -70,12 +70,12 @@ public class Product {
         return this;
     }
 
-    public SubCategory getSubCategory() {
-        return subCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setSubCategory(SubCategory subCategory) {
-        this.subCategory = subCategory;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public List<Comment> getComments() {

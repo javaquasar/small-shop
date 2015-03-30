@@ -68,4 +68,25 @@ public class Category {
         this.parent = parent;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        if (id != null ? !id.equals(category.id) : category.id != null) return false;
+        if (parent != null ? !parent.equals(category.parent) : category.parent != null) return false;
+        if (title != null ? !title.equals(category.title) : category.title != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (parent != null ? parent.hashCode() : 0);
+        return result;
+    }
 }

@@ -1,0 +1,19 @@
+<!--cm - {{t}} ---- {{categories}}-->
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+
+    <div>
+        {{category.title}}
+        <div ng-repeat="category in category.subCategories" ng-include="'tree_item_renderer.html'"></div>
+    </div>
+
+</script>
+
+<div>
+    <div ng-repeat="category in categories" ng-include="'tree_item_renderer.html'">
+    </div>
+</div>
+
+
+
+<!--<div categories-menu></div>-->
