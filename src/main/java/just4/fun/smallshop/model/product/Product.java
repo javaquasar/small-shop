@@ -29,7 +29,7 @@ public class Product {
     @DocumentId
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "title")
     @Field(store = Store.YES)
     private String name;
 

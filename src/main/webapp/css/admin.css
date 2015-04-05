@@ -5,3 +5,45 @@
 .product-controls {
     float: right;
 }
+
+/*admin*/
+
+.app-content {
+    padding: 10px;
+}
+
+.main-controls {
+    width: 200px;
+    float: left;
+    padding: 5px;
+    margin-right: -200px;
+}
+
+.main-content {
+    float: left;
+    padding: 5px;
+    padding-left: 210px;
+    width: 100%;
+}
+
+.main-content:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.categories {
+
+}
+
+.category-item {
+    margin-left: 40px;
+}
+
+.category-item .panel {
+    margin-bottom: 5px;
+}
+
+.category-item_title {
+    display: inline-block;
+}

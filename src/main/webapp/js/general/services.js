@@ -118,5 +118,37 @@ define([
             return Cart;
         }]);
 
+    services.factory('Solr', ['$resource',
+        function ($resource) {
+
+            //TODO move to constants
+            //TODO move 'app' to separate constant
+            var root = 'http://localhost:8983/solr/:core/:requestHandler?q=:query&json.wrf=:callback';
+
+            var Solr = $resource(root, {
+                callback: "JSON_CALLBACK"
+            }, {
+                _findCategories: {
+                    method: "JSONP",
+                    params: {
+                        core: 'category',
+                        requestHandler: 'select'
+                    }
+                }
+            });
+
+            Solr.findCategories = function(titleQuery, success, error) {
+                Solr._findCategories({
+                    query: 'title_prefix:'+titleQuery
+                }, function(data) {
+                    success && success(data.response.docs);
+                }, error)
+            };
+
+
+
+            return Solr;
+        }]);
+
     return services;
 });

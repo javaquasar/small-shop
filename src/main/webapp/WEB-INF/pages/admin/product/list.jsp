@@ -25,7 +25,7 @@
                         <a href="" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
-                <span class="product-name">${product.name}</span>
+                <span class="product-name">${product.title}</span>
             </div>
         </div>
     </c:forEach>

@@ -1,1 +1,18 @@
-categories
+<script type="text/ng-template"  id="tree_item_renderer.html">
+    <div class="category-item">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title category-item_title">
+                    {{category.title}}
+                </h5>
+                <button class="btn btn-sm btn-success">add</button>
+            </div>
+        </div>
+        <div ng-repeat="category in category.subCategories" ng-include="'tree_item_renderer.html'"></div>
+    </div>
+</script>
+
+<div class="categories">
+    <div ng-repeat="category in categories" ng-include="'tree_item_renderer.html'"></div>
+</div>
+
