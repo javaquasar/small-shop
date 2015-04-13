@@ -4,6 +4,7 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
@@ -11,7 +12,9 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/cache
-       http://www.springframework.org/schema/cache/spring-cache.xsd">
+       http://www.springframework.org/schema/cache/spring-cache.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="just4.fun.smallshop.services"/>
     <context:component-scan base-package="just4.fun.smallshop.session"/>
@@ -21,7 +24,19 @@
 
     <context:property-placeholder location="classpath*:data.properties"/>
 
-    <cache:annotation-driven />
+    <!--<cache:annotation-driven />-->
+
+    <!--<cache:advice id="cacheAdvice" cache-manager="cacheManager">-->
+        <!--<cache:caching cache="books">-->
+            <!--<cache:cacheable method="findBook"/>-->
+            <!--<cache:cache-evict method="loadBooks" all-entries="true"/>-->
+        <!--</cache:caching>-->
+    <!--</cache:advice>-->
+
+    <!--&lt;!&ndash; apply the cacheable behavior to all BookService interfaces &ndash;&gt;-->
+    <!--<aop:config>-->
+        <!--<aop:advisor advice-ref="cacheAdvice" pointcut="execution(* just4.fun.smallshop.dao.CategoryDao.*(..))"/>-->
+    <!--</aop:config>-->
 
     <bean name="cacheManager" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager">
         <constructor-arg value="categories"/>
@@ -46,11 +61,12 @@
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan" value="just4.fun.smallshop.model"/>
+        <property name="entityInterceptor" ref="hibernateInterceptor"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${data.hibernate.dialect}</prop>
                 <prop key="hibernate.connection.driver_class">org.postgresql.Driver</prop>
-                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">${data.hibernate.show_sql}</prop>
                 <prop key="hibernate.format_sql">${data.hibernate.show_sql}</prop>
                 <prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.impl.FSDirectoryProvider</prop>
@@ -67,6 +83,10 @@
                 <!--<prop key="hibernate.cache.use_query_cache">true</prop>-->
             </props>
         </property>
+    </bean>
+
+    <bean id="hibernateInterceptor" class="just4.fun.smallshop.dao.solr.SolrHibernateInterceptor">
+        <property name="baseUrl" value="http://localhost:8983/solr/"/>
     </bean>
 
 </beans>

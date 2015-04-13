@@ -3,6 +3,7 @@ define([
     'text!tmpl/main.html',
     'text!tmpl/categories.html',
     'text!tmpl/products.html',
+    'text!tmpl/solrIndex.html',
     'controllers',
     'directives',
     'angularRoute'
@@ -10,7 +11,8 @@ define([
     ng,
     mainTmpl,
     categoriesTmpl,
-    productsTmpl
+    productsTmpl,
+    solrIndexTmpl
     ) {
 
     console.log("app");
@@ -33,6 +35,10 @@ define([
                     .when('/products', {
                         template: productsTmpl,
                         controller: 'ProductsCtrl'
+                    })
+                    .when('/solrIndex', {
+                        template: solrIndexTmpl,
+                        controller: 'SolrIndexCtrl'
                     })
                     .otherwise({
                         redirectTo: '/main'

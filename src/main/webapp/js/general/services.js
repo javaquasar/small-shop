@@ -139,7 +139,7 @@ define([
 
             Solr.findCategories = function(titleQuery, success, error) {
                 Solr._findCategories({
-                    query: 'title_prefix:'+titleQuery
+                    query: titleQuery
                 }, function(data) {
                     success && success(data.response.docs);
                 }, error)

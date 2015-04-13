@@ -2,9 +2,8 @@ package just4.fun.smallshop.model.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import just4.fun.smallshop.model.BaseEntity;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import just4.fun.smallshop.dao.solr.converter.CategoryConverter;
+import just4.fun.smallshop.dao.solr.SolrConverterType;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -16,6 +15,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "category")
+@SolrConverterType(core = "category", converter = CategoryConverter.class)
 //@Cache(region="common", usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Category {
 

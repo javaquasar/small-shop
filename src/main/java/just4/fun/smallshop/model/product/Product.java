@@ -1,6 +1,9 @@
 package just4.fun.smallshop.model.product;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import just4.fun.smallshop.dao.solr.SolrConverterType;
+import just4.fun.smallshop.dao.solr.converter.CategoryConverter;
+import just4.fun.smallshop.dao.solr.converter.ProductConverter;
 import just4.fun.smallshop.model.BaseEntity;
 import org.hibernate.search.annotations.*;
 
@@ -14,6 +17,7 @@ import java.util.List;
 @Table(name = "product")
 @Indexed
 @Analyzer(impl = org.apache.lucene.analysis.standard.StandardAnalyzer.class)
+@SolrConverterType(core = "product", converter = ProductConverter.class)
 public class Product {
 
     public Product() {
@@ -24,22 +28,22 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "serial")
+    @GeneratedValue(generator = "product_id_generator", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "product_id_generator", sequenceName = "product_id_seq")
     @DocumentId
     private Long id;
 
     @Column(name = "title")
     @Field(store = Store.YES)
-    private String name;
+    private String title;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "product_attribute")
     private List<Attribute> attributes;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    @ManyToMany
+    @JoinTable(name = "category_product")
+    private List<Category> categories;
 
     @OneToMany(mappedBy = "product")
     private List<Comment> comments;
@@ -52,13 +56,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public Product setName(String name) {
-        this.name = name;
-        return this;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<Attribute> getAttributes() {
@@ -70,12 +73,12 @@ public class Product {
         return this;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public List<Comment> getComments() {

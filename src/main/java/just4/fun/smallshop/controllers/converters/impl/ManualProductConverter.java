@@ -21,7 +21,7 @@ public class ManualProductConverter implements ProductConverter {
     public Product formToModel(ProductForm productForm) {
         Product product = new Product();
         product.setId(productForm.getId());
-        product.setName(productForm.getTitle());
+        product.setTitle(productForm.getTitle());
         List<Attribute> attributes = extractAttributes(productForm.getAttributes(), product);
         product.setAttributes(attributes);
         return product;
@@ -57,7 +57,7 @@ public class ManualProductConverter implements ProductConverter {
     public ProductForm modelToForm(Product product) {
         ProductForm productForm = new ProductForm();
         productForm.setId(product.getId());
-        productForm.setTitle(product.getName());
+        productForm.setTitle(product.getTitle());
         productForm.setAttributes(extractAttributes(product.getAttributes()));
         return productForm;
     }

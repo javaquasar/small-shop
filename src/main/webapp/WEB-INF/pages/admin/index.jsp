@@ -11,6 +11,7 @@
     <div class="btn-group-vertical main-controls" role="group">
         <a href="#/categories" class="btn btn-default">Categories</a>
         <a href="#/products" class="btn btn-default">Products</a>
+        <a href="#/solrIndex" class="btn btn-default">Solr Index</a>
     </div>
     <div class="main-content">
         <div ng-view></div>

@@ -1,6 +1,7 @@
 package just4.fun.smallshop.api;
 
 import just4.fun.smallshop.model.product.AttributeType;
+import just4.fun.smallshop.model.product.Category;
 import just4.fun.smallshop.services.AttributeTypeService;
 import just4.fun.smallshop.services.CategoryService;
 import just4.fun.smallshop.services.ProductService;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/category")
-public class CategoryApi extends BaseRestController {
+public class CategoryApi extends BaseRestController<Category, Long> {
 
     @Autowired
     private CategoryService categoryService;

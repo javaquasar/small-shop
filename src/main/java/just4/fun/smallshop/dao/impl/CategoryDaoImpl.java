@@ -29,8 +29,10 @@ public class CategoryDaoImpl extends BaseHibernateRepository<Category, Long>
         super(sessionFactory);
     }
 
+
+
     @Override
-    @Cacheable("categories")
+//    @Cacheable("categories")
     public List<Category> findAll() {
         Query query = getSession().createQuery("select c from Category c left join fetch c.subCategories");// where parent is null");
 //        query.setCacheable(true);

@@ -12,7 +12,31 @@
     </div>
 </script>
 
+<button class="btn btn-success" ng-click="createCategory()">Create</button>
+
 <div class="categories">
     <div ng-repeat="category in categories" ng-include="'tree_item_renderer.html'"></div>
 </div>
+
+
+<script type="text/ng-template" id="CategoryEditModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">
+            <span ng-if="categoryId">Edit category ({{category.title}})</span>
+            <span ng-if="!categoryId">Create category</span>
+        </h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" ng-model="category.title">
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
 
